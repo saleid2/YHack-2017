@@ -1,55 +1,53 @@
 package com.example.thien.applicationvitech;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Locale;
-
-import android.app.DatePickerDialog;
+import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.DatePicker;
-import android.widget.EditText;
 
-public class mainform1 extends AppCompatActivity implements OnClickListener {
+import android.view.View;
+import android.widget.RadioButton;
+
+
+public class mainform1 extends AppCompatActivity implements View.OnClickListener{
+
+    private RadioButton radioMale, radioFemale;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mainform1);
+
+        radioMale = (RadioButton)findViewById(R.id.male);
+        radioFemale = (RadioButton)findViewById(R.id.female);
+
+        radioMale.setOnClickListener(this);
+        radioFemale.setOnClickListener(this);
+
     }
-    private void updateLabel() {
-        String myFormat = "MM/dd/yy"; //In which you need put here
-        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
 
-        edittext.setText(sdf.format(myCalendar.getTime()));
-    }
 
-    private Calendar myCalendar = Calendar.getInstance();
-    private EditText edittext= (EditText) findViewById(R.id.Birthday);
-    private DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
 
-        @Override
-        public void onDateSet(DatePicker view, int year, int monthOfYear,
-                              int dayOfMonth) {
-            // TODO Auto-generated method stub
-            myCalendar.set(Calendar.YEAR, year);
-            myCalendar.set(Calendar.MONTH, monthOfYear);
-            myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-            updateLabel();
+    @Override
+    public void onClick(View v){
+        switch (v.getId()){
+            case R.id.male:
+                if(radioMale.isChecked()) {
+                    radioFemale.setSelected(false);
+                }
+                else if(radioFemale.isChecked()){
+                    radioMale.setSelected(false);
+                }
+            case R.id.female:
+                if(radioFemale.isChecked()){
+                    radioMale.setSelected(false);
+                }
+                else if(radioMale.isChecked()){
+                    radioFemale.setSelected(false);
+                }
         }
 
-    };
-
-    EditText.setOnClickListener(new OnClickListener() {
-
-        @Override
-        public void onClick(View v) {
-            // TODO Auto-generated method stub
-            new DatePickerDialog(classname.this, date, myCalendar
-                    .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
-                    myCalendar.get(Calendar.DAY_OF_MONTH)).show();
-        }
-    });
+    }
 }
+
+
 
