@@ -6,12 +6,12 @@ from flatten_json import flatten
 from collections import defaultdict
 
 model = ensemble.RandomForestClassifier(criterion='gini')
-model_filename = 'dsm.pkl'
+model_filename = os.path.dirname(os.path.realpath(__file__)) + '\dsm.pkl'
 
 
 __api_url__ = 'https://v3v10.vitechinc.com/solr/'
 __api_subquer_begin__ = 'select?indent=on&q=*:*&wt=json'
-__api_subquer_rowcount__ = '&rows=1000'
+__api_subquer_rowcount__ = '&rows=1000000'
 __api_subquer_sort__ = '&sort=id%20desc'
 __api_quer__ = __api_subquer_begin__ + __api_subquer_sort__ + __api_subquer_rowcount__
 __api_part__ = 'v_participant/'
@@ -19,7 +19,7 @@ __api_part_det__ = 'v_participant_detail/'
 __api_quot__ = 'v_quotes/'
 __api_plan__ = 'v_plan_detail/select?indent=on&q=*:*&wt=json'
 
-__train_percent__ = 0.7
+__test_size__ = 0.35
 
 
 def __get_api_data():
@@ -88,7 +88,7 @@ def __build_model(data):
         X[c] = le.fit_transform(enc[c])
 
 
-    X_train, X_test, Y_train, Y_test = model_selection.train_test_split(X,Y, train_size=__train_percent__)
+    X_train, X_test, Y_train, Y_test = model_selection.train_test_split(X,Y, test_size=__test_size__)
 
     print("Starting fitting...")
     start_fit = timeit.default_timer()
@@ -107,7 +107,6 @@ def __format_data(x):
 
 
 def data_init():
-    print(os.path.abspath(model_filename))
     if(os.path.isfile(model_filename)):
         print('Saved model found')
         model = joblib.load(model_filename)
