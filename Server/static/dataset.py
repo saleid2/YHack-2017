@@ -1,6 +1,7 @@
-from sklearn import ensemble, preprocessing
+from sklearn import ensemble, preprocessing, model_selection
+from sklearn.externals import joblib
 import pandas as pd
-import pickle, os, urllib, json, timeit
+import os, urllib, json, timeit
 from flatten_json import flatten
 from collections import defaultdict
 
@@ -10,13 +11,15 @@ model_filename = 'dsm.pkl'
 
 __api_url__ = 'https://v3v10.vitechinc.com/solr/'
 __api_subquer_begin__ = 'select?indent=on&q=*:*&wt=json'
-__api_subquer_rowcount__ = '&rows=100000'
+__api_subquer_rowcount__ = '&rows=1000'
 __api_subquer_sort__ = '&sort=id%20desc'
 __api_quer__ = __api_subquer_begin__ + __api_subquer_sort__ + __api_subquer_rowcount__
 __api_part__ = 'v_participant/'
 __api_part_det__ = 'v_participant_detail/'
 __api_quot__ = 'v_quotes/'
 __api_plan__ = 'v_plan_detail/select?indent=on&q=*:*&wt=json'
+
+__train_percent__ = 0.7
 
 
 def __get_api_data():
@@ -48,7 +51,6 @@ def __get_api_data():
             d['PRE_CONDITIONS'] = var
     part_det_flat = (flatten(d) for d in part_details)
     part_det_pd = pd.DataFrame(part_det_flat)
-
 
     # Fetch quoted prices and purchased package
     print('Fetching v_quotes')
@@ -85,20 +87,35 @@ def __build_model(data):
         enc[c] = le.fit_transform(X[c].fillna('Empty'))
         X[c] = le.fit_transform(enc[c])
 
+
+    X_train, X_test, Y_train, Y_test = model_selection.train_test_split(X,Y, train_size=__train_percent__)
+
     print("Starting fitting...")
     start_fit = timeit.default_timer()
-    model.fit(X,Y)
+    model.fit(X_train,Y_train)
     elapsed_fit = timeit.default_timer() - start_fit
     print('Took ' + str(elapsed_fit) + ' seconds')
 
+    print('RF accuracy: TRAINING', model.score(X_train, Y_train))
+    print('RF accuracy: TESTING', model.score(X_test, Y_test))
+
+    return model
+
+def __format_data(x):
+    # Format received JSON into something the model can use to predict
+    return x
+
+
 def data_init():
+    print(os.path.abspath(model_filename))
     if(os.path.isfile(model_filename)):
         print('Saved model found')
-        model = pickle.loads(model_filename)
+        model = joblib.load(model_filename)
     else:
         print('No saved model found. Fetching from API')
         data = __get_api_data()
-        __build_model(data)
+        model = __build_model(data)
+        joblib.dump(model, model_filename)
     # check if model exists on disk
     # else fetch data from API
     # build model
@@ -106,8 +123,5 @@ def data_init():
 
 
 def get_prediction(x):
+    date = __format_data(x)
     return model.predict(x)
-    # returns model.predict();
-
-
-data_init()
