@@ -20,14 +20,17 @@
             android:hint = "Enter your full name"/>
 
 
-        <EditText
-            android:id="@+id/Birthday"
+        <Button android:id="@+id/myDatePickerButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:clickable="true"
-            android:editable="false"
-            android:focusable="false"
-            android:hint="Date of birth"/>
+            android:text="Day of birth"/>
+
+        <TextView android:id="@+id/showMyDate"
+            android:layout_width="fill_parent"
+            android:gravity="center_horizontal"
+            android:textSize="25dp"
+            android:textColor="#000"
+            android:layout_height="wrap_content"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -75,9 +78,10 @@
             android:inputType="text|textPersonName" />
 
         <Button
-            android:id="@+id/next"
+            android:id="@+id/Next1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center"
             android:text="Next" />
 
 
