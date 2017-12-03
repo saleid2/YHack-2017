@@ -19,14 +19,14 @@
         <activity
             android:name=".mainform2"
             android:label="@string/title_activity_mainform2"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".mainform3"
             android:label="@string/title_activity_mainform3"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".quote"
-            android:label="quote"
+            android:label="@string/title_activity_quote"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -14,28 +14,18 @@
         tools:layout_editor_absoluteX="8dp"
         tools:layout_editor_absoluteY="8dp">
 
+
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/diplayName"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="Full name:" />
+
+        <TextView
+            android:id="@+id/setName"
             android:layout_width="match_parent"
-            android:layout_centerHorizontal="true"
-            android:gravity="center"
-            android:textSize="30dp"
-            android:textColor="#000"
-            android:text="Recommended" />
-
-        <android.support.v7.widget.CardView
-            android:id="@+id/cardview"
-            android:layout_width="match_parent"
-            android:layout_height="400dp" />
-
-        
-            <Button
-                android:id="@+id/comparePlan"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Compare plans" />
+            android:layout_height="wrap_content" />
+    </LinearLayout>>
 
 
-    </LinearLayout>
-</android.support.constraint.ConstraintLayout>
+</android.support.design.widget.CoordinatorLayout>

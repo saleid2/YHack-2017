@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
@@ -18,9 +19,16 @@ import java.util.Calendar;
 
 
 public class mainform1 extends AppCompatActivity implements View.OnClickListener{
+    //attribut du User
+    final User user = new User();
 
     //attribut pour sex
     private RadioButton radioMale, radioFemale;
+
+    //attribut name
+    private EditText editName, editHeight, editWeight;
+    //attribut date
+    private TextView editDate;
 
     //attribut pour date
     private int mYear;
@@ -42,16 +50,6 @@ public class mainform1 extends AppCompatActivity implements View.OnClickListener
         radioMale.setOnClickListener(this);
         radioFemale.setOnClickListener(this);
 
-        //bouton next//
-        Button btn = (Button)findViewById(R.id.Next1);
-
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(mainform1.this, mainform2.class));
-            }
-        });
-        
         //pour date//
         mDateDisplay = (TextView) findViewById(R.id.showMyDate);
         mPickDate = (Button) findViewById(R.id.myDatePickerButton);
@@ -70,26 +68,65 @@ public class mainform1 extends AppCompatActivity implements View.OnClickListener
 
         // display the current date
         updateDisplay();
+
+        //set les attributs//
+
+        editName = (EditText)findViewById(R.id.editName);
+        String contentName = editName.getText().toString();
+        user.setName(contentName);
+
+        editDate = (TextView)findViewById(R.id.showMyDate);
+        String contentDate = editDate.getText().toString();
+        user.setDob(contentDate);
+
+        editHeight = (EditText) findViewById(R.id.height);
+        String contentHeight = editHeight.getText().toString();
+        user.setHeight(contentHeight);
+
+        editWeight = (EditText) findViewById(R.id.weight);
+        String contentWeight = editWeight.getText().toString();
+        user.setWeight(contentWeight);
+
+
+        //bouton next//
+        Button btn = (Button)findViewById(R.id.Next1);
+
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mainform1.this, mainform2.class);
+                intent.putExtra("User",user);
+                startActivity(intent);
+            }
+        });
+
     }
 
     //methode pour sex//
     @Override
     public void onClick(View v){
         switch (v.getId()){
+
             case R.id.male:
                 if(radioMale.isChecked()) {
                     radioFemale.setSelected(false);
+                    user.setSex("Male");
+
                 }
                 else if(radioFemale.isChecked()){
                     radioMale.setSelected(false);
+                    user.setSex("Female");
                 }
                 break;
             case R.id.female:
-                if(radioFemale.isChecked()){
-                    radioMale.setSelected(false);
-                }
-                else if(radioMale.isChecked()){
+                if(radioMale.isChecked()) {
                     radioFemale.setSelected(false);
+                    user.setSex("Male");
+
+                }
+                else if(radioFemale.isChecked()){
+                    radioMale.setSelected(false);
+                    user.setSex("Female");
                 }
                 break;
         }
