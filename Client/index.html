@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Vitech Insurance Quote</title>
+    <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Customer Information
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" class="form-control" id="name">
+                        </div>
+                        <div class="form-group">
+                            <label for="dob">Date of Birth</label>
+                            <input type="date" class="form-control" id="dob">
+                        </div>
+                        <div class="form-group">
+                            <label for="sex">Sex</label>
+                            <select id="sex" class="form-control">
+                                <option value="F">Female</option>
+                                <option value="M">Male</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="height">Height (inches)</label>
+                            <input type="number" class="form-control" id="height" min="0">
+                        </div>
+                        <div class="form-group">
+                            <label for="weight">Weight (pounds)</label>
+                            <input type="number" class="form-control" id="weight" min="0">
+                        </div>
+
+                        <hr>
+
+                        <div class="form-group">
+                            <label for="addr">Address</label>
+                            <input type="text" class="form-control" id="addr">
+                        </div>
+                        <div class="form-group">
+                            <label for="city">City</label>
+                            <input type="text" class="form-control" id="city">
+                        </div>
+                        <div class="form-group">
+                            <label for="state">State</label>
+                            <input type="text" class="form-control" id="state">
+                        </div>
+                        <div class="form-group">
+                            <label for="employment">Employment status</label>
+                            <select id="employment" class="form-control">
+                                <option value="Employed">Employed</option>
+                                <option value="Unemployed">Unemployed</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="income">Annual income</label>
+                            <input type="number" class="form-control" id="income" min="0" step="1000">
+                        </div>
+
+                        <hr>
+
+                        <div class="form-group">
+                            <label for="preconds">Preconditions (You may select multiple items)</label>
+                            <select multiple class="form-control" id="preconds">
+                                <option value='{"condition_name":"Chronic viral hepatitis B without delta-agent","ICD_CODE":"B18.1","Risk_factor":"Medium"}'>
+                                    Chronic viral hepatitis B without delta-agent
+                                </option>
+                                <option value='{"condition_name":"Ataxic cerebral palsy","ICD_CODE":"G80.4","Risk_factor":"Medium"}'>
+                                    Ataxic cerebral palsy
+                                </option>
+                                <option value='{"condition_name":"Diarrhea, unspecified","ICD_CODE":"R19.7","Risk_factor":"Low"}'>
+                                    Diarrhea, unspecified
+                                </option>
+                                <option value='{"condition_name":"Tachycardia, unspecified","ICD_CODE":"R00.0","Risk_factor":"Low"}'>
+                                    Tachycardia, unspecified
+                                </option>
+                                <option value='{"condition_name":"Unspecified fracture of specified metacarpal bone with unspecified laterality","ICD_CODE":"S62.308","Risk_factor":"Low"}'>
+                                    Unspecified fracture of specified metacarpal bone with unspecified laterality
+                                </option>
+                                <option value='{"condition_name":"Other abnormalities of heart beat","ICD_CODE":"R00.8","Risk_factor":"Low"}'>
+                                    Other abnormalities of heart beat
+                                </option>
+                                <option value='{"condition_name":"Type 2 diabetes mellitus with hyperglycemia","ICD_CODE":"E11.65","Risk_factor":"Medium"}'>
+                                    Type 2 diabetes mellitus with hyperglycemia
+                                </option>
+                                <option value='{"condition_name":"HIV disease resulting in other bacterial infections","ICD_CODE":"B20.1","Risk_factor":"High"}'>
+                                    HIV disease resulting in other bacterial infections
+                                </option>
+                                <option value='{"condition_name":"cough with hemorrhage","ICD_CODE":"R04.2","Risk_factor":"Low"}'>
+                                    Cough with hemorrhage
+                                </option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="tobacco">Tobacco</label>
+                            <select class="form-control" id="tobacco">
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+
+                        <hr>
+                        <div class="row">
+                            <div class="btn-group btn-group-justified">
+                                <a href="#" id="compare" class="btn btn-default">Compare plans</a>
+                                <a href="#" id="quote" class="btn btn-primary">Get quote!</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal_compare" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Available plans</h4>
+                </div>
+                <div class="modal-body">
+                    <div id="compare_plans_wrapper"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal_quote" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Your recommended plan is...</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Some text in the modal.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="./js/jquery-3.2.1.min.js"></script>
+    <script src="./js/quotes.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+</body>
+
+</html>
