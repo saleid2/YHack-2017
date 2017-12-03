@@ -6,7 +6,7 @@ Android Client app built using Java.
 Web Client built using jQuery.
 
 
-# Problems with the code
+### Problems with the code
 
 Accuracy using test data is relatively low (around 30%) however it is higher than purely random, so it's something!
 
