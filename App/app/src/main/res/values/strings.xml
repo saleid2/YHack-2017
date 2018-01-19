@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Vitech Insurance Quote</string>
+
+    <string name="title_activity_mainform2">mainform2</string>
+    <string name="title_activity_mainform3">mainform3</string>
+    <string name="title_activity_quote">quote</string>
+    <string name="title_activity_compare">compare</string>
+</resources>

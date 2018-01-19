@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/preconditionText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Do you have any preconditions?"
+            android:textAppearance="@style/TextAppearance.AppCompat.Menu" />
+
+
+
+                <CheckBox
+                    android:id = "@+id/precondition1"
+                    android:text="Chronic viral hepatitis B without delta-agent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <CheckBox
+                    android:id="@+id/precondition2"
+                    android:text="Ataxic cerebral palsy"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <CheckBox
+                    android:id="@+id/precondition3"
+                    android:text="Diarrhea, unspecified"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <CheckBox
+                    android:id="@+id/precondition4"
+                    android:text="Tachycardia, unspecified"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <CheckBox
+                    android:id="@+id/precondition5"
+                    android:text="Unspecified fracture of specified metacarpal bone with unspecified laterality"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <CheckBox
+                    android:id="@+id/precondition6"
+                    android:text="Other abnormalities of heart beat"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <CheckBox
+                    android:id="@+id/precondition7"
+                    android:text="Type 2 diabetes mellitus with hyperglycemia"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <CheckBox
+                    android:id="@+id/precondition8"
+                    android:text="HIV disease resulting in other bacterial infections"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <CheckBox
+                    android:id="@+id/precondition9"
+                    android:text="cough with hemorrhage"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp" />
+        <TextView
+            android:id="@+id/tobaccoText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Do you smoke?"
+            android:textAppearance="@style/TextAppearance.AppCompat.Menu" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioGroup
+                android:id="@+id/radioGroup2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/smokeYes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:text="Yes" />
+
+                <RadioButton
+                    android:id="@+id/smokeNo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:text="No" />
+            </RadioGroup>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/Quote1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center"
+            android:text="Get Quote" />
+
+
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>
